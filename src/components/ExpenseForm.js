@@ -27,6 +27,8 @@ export default class ExpenseForm extends Component {
     const { name, amount } = this.state;
     e.preventDefault();
 
+    if (!name || !amount) return;
+
     this.props.onSave({
       name,
       amount: Number(amount),

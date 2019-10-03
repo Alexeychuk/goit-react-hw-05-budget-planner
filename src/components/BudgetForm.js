@@ -21,7 +21,12 @@ export default class BudgetForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    const { budget } = this.state;
 
+    if (budget.includes('-')) {
+      this.setState({ budget: 0 });
+      return;
+    }
     this.props.handleSave(this.state.budget);
 
     this.setState({ budget: 0 });
