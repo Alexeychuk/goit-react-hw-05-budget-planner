@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import BudgetFormContainer from '../containers/BudgetFormContainer';
 import ExpenseFormContainer from '../containers/ExpenseFormContainer';
 import ExpensesTableContainer from '../containers/ExpensesTableContainer';
@@ -25,6 +28,7 @@ const App = ({ expenses }) => (
     <ValuesContainer />
     <ExpenseFormContainer />
     {expenses.length > 0 && <ExpensesTableContainer />}
+    <ToastContainer />
   </Container>
 );
 

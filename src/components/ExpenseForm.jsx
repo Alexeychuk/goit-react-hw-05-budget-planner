@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
+import { toast } from 'react-toastify';
 
 import Form from './shared/Form';
 import Label from './shared/Label';
@@ -14,7 +15,7 @@ const labelStyles = `
 export default class ExpenseForm extends Component {
   state = {
     name: '',
-    amount: 0,
+    amount: '',
   };
 
   handleChange = e => {
@@ -27,8 +28,14 @@ export default class ExpenseForm extends Component {
     const { name, amount } = this.state;
     e.preventDefault();
 
-    if (!name || !amount) return;
-
+    if (!name || !amount) {
+      toast.warn('Please, enter valid name and amount of money');
+      return;
+    }
+    if (Number(amount) < 0 || Number(amount) === 0) {
+      toast.warn('Please, enter valid amount of money');
+      return;
+    }
     this.props.onSave({
       name,
       amount: Number(amount),

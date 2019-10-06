@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { removeExpense } from '../redux/actions';
-import ExpensesTable from '../components/ExpensesTable';
+import ExpensesTable from '../components/ExpensesTable.jsx';
 import { getAllExpenses } from '../redux/selectors';
 
 const mapStateToProps = state => ({

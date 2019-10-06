@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { toast } from 'react-toastify';
+
 import Form from './shared/Form';
 import Label from './shared/Label';
 import Input from './shared/Input';
@@ -11,7 +13,7 @@ const labelStyles = `
 `;
 
 export default class BudgetForm extends Component {
-  state = { budget: 0 };
+  state = { budget: '' };
 
   handleChange = e => {
     this.setState({
@@ -23,8 +25,8 @@ export default class BudgetForm extends Component {
     e.preventDefault();
     const { budget } = this.state;
 
-    if (budget.includes('-')) {
-      this.setState({ budget: 0 });
+    if (!budget || budget.includes('-')) {
+      toast.warn('Please, enter valid budget');
       return;
     }
     this.props.handleSave(this.state.budget);
